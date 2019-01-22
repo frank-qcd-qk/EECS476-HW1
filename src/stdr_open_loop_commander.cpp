@@ -10,7 +10,8 @@ int main(int argc, char **argv) {
     double speed = 1.0; // 1m/s speed command
     double yaw_rate = 0.5; //0.5 rad/sec yaw rate command
     double time_3_sec = 3.0; // should move 3 meters or 1.5 rad in 3 seconds
-    
+    double time_4_sec = 4.0; // should move 3 meters or 1.5 rad in 3 seconds
+
       
     geometry_msgs::Twist twist_cmd; //this is the message type required to send twist commands to STDR 
     // start with all zeros in the command message; should be the case by default, but just to be safe..
@@ -28,12 +29,14 @@ int main(int argc, char **argv) {
       twist_commander.publish(twist_cmd);
       loop_timer.sleep();
     }
-    twist_cmd.linear.x=speed; //command to move forward
+    //! Robot Move Forward 3 Unit:
+    twist_cmd.linear.x=speed;
     while(timer<time_3_sec) {
           twist_commander.publish(twist_cmd);
           timer+=sample_dt;
           loop_timer.sleep();
           }
+    //! Robot Forward Motion Stop, turning robot left
     twist_cmd.linear.x=0.0; //stop moving forward
     twist_cmd.angular.z=yaw_rate; //and start spinning in place
     timer=0.0; //reset the timer
@@ -42,7 +45,7 @@ int main(int argc, char **argv) {
           timer+=sample_dt;
           loop_timer.sleep();
           }
-
+    //! Robot Turning stop, Move Forward 3 Units
     twist_cmd.angular.z=0.0; //and stop spinning in place 
     twist_cmd.linear.x=speed; //and move forward again
     timer=0.0; //reset the timer
@@ -51,7 +54,116 @@ int main(int argc, char **argv) {
           timer+=sample_dt;
           loop_timer.sleep();
           }
-    //halt the motion
+    //* Pass First Cross
+    //! Robot Forward Motion Stop, turning robot right
+    twist_cmd.linear.x=0.0; //stop moving forward
+    twist_cmd.angular.z= (-1)*yaw_rate; //and start spinning in place
+    timer=0.0; //reset the timer
+    while(timer<time_3_sec) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Turning stop, Move Forward 4 Units
+    twist_cmd.angular.z=0.0; //and stop spinning in place 
+    twist_cmd.linear.x=speed; //and move forward again
+    timer=0.0; //reset the timer
+    while(timer<time_4_sec) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Forward Motion Stop, turning robot left
+    twist_cmd.linear.x=0.0; //stop moving forward
+    twist_cmd.angular.z=yaw_rate; //and start spinning in place
+    timer=0.0; //reset the timer
+    while(timer<3.2) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Turning stop, Move Forward 2.2 Units
+    twist_cmd.angular.z=0.0; //and stop spinning in place 
+    twist_cmd.linear.x=speed; //and move forward again
+    timer=0.0; //reset the timer
+    while(timer<2.2) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Forward Motion Stop, turning robot left
+    twist_cmd.linear.x=0.0; //stop moving forward
+    twist_cmd.angular.z=yaw_rate; //and start spinning in place
+    timer=0.0; //reset the timer
+    while(timer<time_3_sec) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Turning stop, Move Forward 6.0 Units
+    twist_cmd.angular.z=0.0; //and stop spinning in place 
+    twist_cmd.linear.x=speed; //and move forward again
+    timer=0.0; //reset the timer
+    while(timer<6.0) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Forward Motion Stop, turning robot right
+    twist_cmd.linear.x=0.0; //stop moving forward
+    twist_cmd.angular.z= (-1)*yaw_rate; //and start spinning in place
+    timer=0.0; //reset the timer
+    while(timer<time_3_sec) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Turning stop, Move Forward 0.8 Units
+    twist_cmd.angular.z=0.0; //and stop spinning in place 
+    twist_cmd.linear.x=speed; //and move forward again
+    timer=0.0; //reset the timer
+    while(timer<0.8) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Forward Motion Stop, turning robot left
+    twist_cmd.linear.x=0.0; //stop moving forward
+    twist_cmd.angular.z=yaw_rate; //and start spinning in place
+    timer=0.0; //reset the timer
+    while(timer<time_3_sec) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Turning stop, Move Forward 1.0 Units
+    twist_cmd.angular.z=0.0; //and stop spinning in place 
+    twist_cmd.linear.x=speed; //and move forward again
+    timer=0.0; //reset the timer
+    while(timer<1.0) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Forward Motion Stop, turning robot right
+    twist_cmd.linear.x=0.0; //stop moving forward
+    twist_cmd.angular.z= (-1)*yaw_rate; //and start spinning in place
+    timer=0.0; //reset the timer
+    while(timer<time_3_sec) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Robot Turning stop, Move Forward 1.0 Units
+    twist_cmd.angular.z=0.0; //and stop spinning in place 
+    twist_cmd.linear.x=speed; //and move forward again
+    timer=0.0; //reset the timer
+    while(timer<5.5) {
+          twist_commander.publish(twist_cmd);
+          timer+=sample_dt;
+          loop_timer.sleep();
+          }
+    //! Halt the motion
     twist_cmd.angular.z=0.0; 
     twist_cmd.linear.x=0.0; 
     for (int i=0;i<10;i++) {

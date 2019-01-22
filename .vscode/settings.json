@@ -2,5 +2,9 @@
     "python.autoComplete.extraPaths": [
         "/home/frank/ros_ws/devel/lib/python2.7/dist-packages",
         "/opt/ros/kinetic/lib/python2.7/dist-packages"
-    ]
+    ],
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 8 }",
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 8 }",
+    "C_Cpp.clang_format_path": "/usr/share/clang/clang-format-6.0/clang-format.py",
+
 }
