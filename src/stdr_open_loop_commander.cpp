@@ -149,7 +149,7 @@ int main(int argc, char **argv) {
     twist_cmd.linear.x=0.0; //stop moving forward
     twist_cmd.angular.z= (-1)*yaw_rate; //and start spinning in place
     timer=0.0; //reset the timer
-    while(timer<time_3_sec) {
+    while(timer<3.0) {
           twist_commander.publish(twist_cmd);
           timer+=sample_dt;
           loop_timer.sleep();
@@ -169,6 +169,7 @@ int main(int argc, char **argv) {
     for (int i=0;i<10;i++) {
       twist_commander.publish(twist_cmd);
       loop_timer.sleep();
+      ROS_INFO("Sending HALT!");
     }               
     //done commanding the robot; node runs to completion
 }
